@@ -5,7 +5,7 @@ export const useCounter = (inicialState: number) => {
 
 	const acumular = (numero: number) => {
 		if (counter <= -1) {
-			alert("no es permitido restar negativos");
+			setCounter(0);
 		} else {
 			setCounter(counter + numero);
 		}
