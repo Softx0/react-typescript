@@ -20,13 +20,14 @@ type LoginActionPayload = {
 };
 
 //mejor manejar las actions con type, ya que no las necesitare expandir
+//payload es la informacion adicional para iniciar sesion
 type AuthAction =
 	| { type: "logout" }
 	| { type: "login"; payload: LoginActionPayload };
 
 const authReducer = (state: IAuthState, action: AuthAction): IAuthState => {
 	//consideraciones a tomar con los reducer
-	//jamas mutar el state, si haremos eso debemos devolver el state limpio
+	//jamas mutar el state directamente, si haremos eso debemos devolver el state limpio
 
 	switch (action.type) {
 		case "logout":
@@ -42,7 +43,7 @@ const authReducer = (state: IAuthState, action: AuthAction): IAuthState => {
 			const { nombre, username } = action.payload;
 			console.log("Logeandome!");
 			return {
-				enabling: false,
+				...state,
 				token: "JKDBFJSBDFGSD58455AD7F5",
 				nombre: nombre,
 				username: username,
@@ -104,8 +105,7 @@ export const Login = () => {
 
 			{token ? (
 				<button className="btn btn-danger" onClick={logout}>
-					{" "}
-					Logout{" "}
+					Logout
 				</button>
 			) : (
 				<button className="btn btn-success" onClick={login}>
