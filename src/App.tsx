@@ -6,6 +6,7 @@ const App = () => {
 			<h1>Introduction to Typescript React</h1>
 			<hr />
 			<Login />
+			
 		</div>
 	);
 };
