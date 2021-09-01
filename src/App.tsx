@@ -1,7 +1,6 @@
 // import { Login } from "./components/Login";
-
-import { Formularios } from "./components/Formularios";
-// import Usuarios from "./components/Usuarios"
+// import Usuarios from "./components/Usuarios";
+// import { Formularios } from "./components/Formularios";
 
 const App = () => {
 	return (
@@ -10,7 +9,7 @@ const App = () => {
 			<hr />
 			{/* <Login /> */}
 			{/* <Usuarios /> */}
-			<Formularios />
+			{/* <Formularios /> */}
 		</div>
 	);
 };
