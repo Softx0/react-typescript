@@ -4,15 +4,15 @@ import { User, UserList } from "../interfaces/Usuario";
 
 export const useUsuarios = () => {
     const [usuarios, setUsuarios] = useState<User[]>([]);
-
+    const INITIAL_PAGE: number = 1;
     //excelente candidato para usar el useRef, como una ref a una variable si 
     //cambia su valor pero no va a disparar el procedimiento para renderizar el componente 
     const paginaRef = useRef(1);
 
     useEffect(() => {
-        //primera y unica vez cada vez que recargue
-        setUsuarios(usuarios);
-    }, []);
+         //primera y unica vez cada vez que recargue
+        getUser().then(res => setUsuarios(res.data.data));
+    }, [usuarios]);
 
     const getUser = async() => {
         //llamado al API
@@ -36,11 +36,11 @@ export const useUsuarios = () => {
     const paginaSiguiente = () => {
         const users = getUser()
             .then(response => {
-                if (response.data.data.length > 0) {
+                if (paginaRef.current === (response.data.total / response.data.per_page)) {
+                    alert('Registros inexistentes, decremente');
+                }else {
                     setUsuarios(response.data.data);
                     paginaRef.current ++;
-                }else {
-                    alert('Registros inexistentes, decremente');
                 }
             })
             .catch(console.log)
@@ -50,8 +50,7 @@ export const useUsuarios = () => {
     const paginaAnterior = () => {
         const users = getUser()
             .then(response => {
-                
-                if (response.data.data.length === 0) {
+                if(paginaRef.current !== INITIAL_PAGE){
                     setUsuarios(response.data.data);
                     paginaRef.current --;
                 }else {
@@ -60,7 +59,7 @@ export const useUsuarios = () => {
             })
             .catch(console.log)
         return users;
-    }
+    };
 
     return {
         usuarios,
