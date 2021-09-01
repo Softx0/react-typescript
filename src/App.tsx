@@ -1,6 +1,7 @@
 // import { Login } from "./components/Login";
 
-import Usuarios from "./components/Usuarios"
+import { Formularios } from "./components/Formularios";
+// import Usuarios from "./components/Usuarios"
 
 const App = () => {
 	return (
@@ -8,7 +9,8 @@ const App = () => {
 			<h1>Introduction to Typescript React</h1>
 			<hr />
 			{/* <Login /> */}
-			<Usuarios></Usuarios>
+			{/* <Usuarios /> */}
+			<Formularios />
 		</div>
 	);
 };

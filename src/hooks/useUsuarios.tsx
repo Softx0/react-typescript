@@ -53,8 +53,6 @@ export const useUsuarios = () => {
                 if(paginaRef.current !== INITIAL_PAGE){
                     setUsuarios(response.data.data);
                     paginaRef.current --;
-                }else {
-                    alert('Registros inexistentes, aumente');
                 }
             })
             .catch(console.log)
